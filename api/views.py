@@ -18,7 +18,6 @@ class Login(APIView):
 
         userobj= authenticate(username=u, password=p)
         print(userobj)
-        userid=User.objects.get(user=)
 
         if userobj is not None:
             token=  Token.objects.get(user_id=userid)

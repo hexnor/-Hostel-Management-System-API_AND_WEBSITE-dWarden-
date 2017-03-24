@@ -60,7 +60,7 @@ class Login(APIView):
             "status": "false",
             "token": "null"
         }
-        defaulttoken='token 6d793111878d993460b68dcb78eb618adf20883c'
+
         headertoken=request.META['HTTP_AUTHORIZATION'].__str__()
         print(headertoken)
         if userobj is not None:
@@ -119,4 +119,6 @@ class StudentList(APIView):
 
 
 # obj=College.class FilterCollegeByStateList(APIView):
+
+defaulttoken='token 6d793111878d993460b68dcb78eb618adf20883c'
 #     def get(self,request):

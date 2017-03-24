@@ -7,25 +7,35 @@ from .serializers import StudentSerializer, CollegeSerializer, StateSerializer, 
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
+from django.http import JsonResponse
+# source ~/apienv/bin/activate
 
 class Login(APIView):
+    print("hello")
     def get(self, request):
         pass
     def post(self,request,format=None):
         u = request.POST['username']
         p= request.POST['password']
-        #print(username + "  " + password )
-
+        print(u + "  " + p)
+        print("hello")
         userobj= authenticate(username=u, password=p)
         print(userobj)
-       # userid=User.objects.get(user=)
+        p = {
+            "status": "false",
+            "token": "null"
+        }
 
         if userobj is not None:
-           # token=  Token.objects.get(user_id=userid)
+            token = Token.objects.get(user__username=u).__str__()
 
-            return Response([{'status': 'true'}])
+            p['status'] = 'true'
+            p['token']=token
+            return JsonResponse(p)
         else:
-            return Response({'status': 'false'})
+            p['status'] ='false'
+            p['token'] = 'null'
+            return JsonResponse(p)
 # Create your views here.
 class StateList(APIView):
     def get(self, request):
@@ -95,5 +105,5 @@ class StudentList(APIView):
             )
 
 
-obj=College.class FilterCollegeByStateList(APIView):
-    def get(self,request):
+# obj=College.class FilterCollegeByStateList(APIView):
+#     def get(self,request):

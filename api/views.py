@@ -100,8 +100,8 @@ class Register(APIView):
         password= request.POST['password']
         email= request.POST['email']
 
-        #print(u + "  " + p)
-        #print("hello")
+        print(u + "  " + p)
+        print("hello")
         userobj= authenticate(username=u, password=p)
        # print(userobj)
         p = {

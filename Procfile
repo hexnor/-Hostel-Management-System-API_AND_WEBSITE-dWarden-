@@ -1,1 +1,1 @@
-web: gunicorn hexnor.wsgi --log-file -
+web: gunicorn HMS_API.wsgi --log-file -

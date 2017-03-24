@@ -60,18 +60,30 @@ class Login(APIView):
             "status": "false",
             "token": "null"
         }
-
+        defaulttoken='token 6d793111878d993460b68dcb78eb618adf20883c'
+        headertoken=request.META['HTTP_AUTHORIZATION'].__str__()
+        print(headertoken)
         if userobj is not None:
             token = Token.objects.get(user__username=u).__str__()
-
-            p['status'] = 'true'
-            p['token']=token
-            return JsonResponse(p)
+            print (token+"\n"+defaulttoken)
+            if headertoken==defaulttoken:
+                p['status'] = 'true'
+                p['token'] = token
+                return JsonResponse(p)
+            else:
+                p['status'] = 'false'
+                p['token'] = 'Invalid_token'
+                return JsonResponse(p)
         else:
-            p['status'] ='false'
+            p['status'] = 'false'
             p['token'] = 'null'
             return JsonResponse(p)
+
+
+
 class HostelList(APIView):
+
+    DEFAULT_AUTHENTICATION_CLASSES=('rest_framework.authentication.TokenAuthentication')
     def get(self, request):
         hostel = Hostel.objects.all()
         serializer = HostelSerializer(hostel, many=True)
@@ -84,6 +96,7 @@ class HostelList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(
+
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST
             )
 

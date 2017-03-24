@@ -18,9 +18,10 @@ class Login(APIView):
 
         userobj= authenticate(username=u, password=p)
         print(userobj)
+       # userid=User.objects.get(user=)
 
         if userobj is not None:
-            token=  Token.objects.get(user_id=userid)
+           # token=  Token.objects.get(user_id=userid)
 
             return Response([{'status': 'true'}])
         else:
@@ -93,6 +94,6 @@ class StudentList(APIView):
                 serializer.errors, status=status.HTTP_400_BAD_REQUEST
             )
 
-# server /state/college
-# obj=College.class FilterCollegeByStateList(APIView):
-#     def get(self,request):
+
+obj=College.class FilterCollegeByStateList(APIView):
+    def get(self,request):

@@ -10,32 +10,6 @@ from django.contrib.auth import authenticate
 from django.http import JsonResponse
 # source ~/apienv/bin/activate
 
-class Login(APIView):
-    print("hello")
-    def get(self, request):
-        pass
-    def post(self,request,format=None):
-        u = request.POST['username']
-        p= request.POST['password']
-        print(u + "  " + p)
-        print("hello")
-        userobj= authenticate(username=u, password=p)
-        print(userobj)
-        p = {
-            "status": "false",
-            "token": "null"
-        }
-
-        if userobj is not None:
-            token = Token.objects.get(user__username=u).__str__()
-
-            p['status'] = 'true'
-            p['token']=token
-            return JsonResponse(p)
-        else:
-            p['status'] ='false'
-            p['token'] = 'null'
-            return JsonResponse(p)
 # Create your views here.
 class StateList(APIView):
     def get(self, request):
@@ -71,6 +45,32 @@ class CollegeList(APIView):
             )
 
 
+class Login(APIView):
+    #print("hello")
+    def get(self, request):
+        pass
+    def post(self,request,format=None):
+        u = request.POST['username']
+        p= request.POST['password']
+        #print(u + "  " + p)
+        #print("hello")
+        userobj= authenticate(username=u, password=p)
+       # print(userobj)
+        p = {
+            "status": "false",
+            "token": "null"
+        }
+
+        if userobj is not None:
+            token = Token.objects.get(user__username=u).__str__()
+
+            p['status'] = 'true'
+            p['token']=token
+            return JsonResponse(p)
+        else:
+            p['status'] ='false'
+            p['token'] = 'null'
+            return JsonResponse(p)
 class HostelList(APIView):
     def get(self, request):
         hostel = Hostel.objects.all()

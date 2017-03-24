@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^api/hostel/', show.HostelList.as_view()),
     url(r'^api/token/', resview.obtain_auth_token),
     url(r'^api/login', show.Login.as_view()),
+    url(r'^api/register', show.Register.as_view()),
 ]
 urlpatterns=format_suffix_patterns(urlpatterns)

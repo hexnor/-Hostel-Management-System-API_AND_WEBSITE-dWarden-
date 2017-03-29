@@ -12,8 +12,9 @@ class State(models.Model):
 
 
 class College(models.Model):
-    statename= models.ForeignKey(State, on_delete=models.CASCADE,to_field='statename')#used to_field to convert int to text must set unique to true for operation
+    statename= models.ForeignKey(State, db_column='state',on_delete=models.CASCADE,to_field='statename')#used to_field to convert int to text must set unique to true for operation
     collegename = models.CharField(max_length=30,unique=True)
+
     def __str__(self):
         return self.collegename
 
@@ -24,6 +25,15 @@ class Hostel(models.Model):
 
     def __str__(self):
         return self.hostelname
+class Branch(models.Model):
+    statename= models.ForeignKey(State, on_delete=models.CASCADE,to_field='statename')
+    collegename= models.ForeignKey(College, on_delete=models.CASCADE,to_field='collegename')
+    hostelname = models.ForeignKey(Hostel, on_delete=models.CASCADE, to_field='hostelname')
+    branchname= models.CharField(max_length=30,unique=True)
+
+    def __str__(self):
+        return self.branchname
+
 
 class Student(models.Model):
     statename= models.ForeignKey(State, on_delete=models.CASCADE,to_field='statename')
@@ -43,7 +53,8 @@ class Student(models.Model):
     )
     studentbldgp = models.CharField(max_length=3,choices=BG)
     studentroomnoprefix = models.CharField(max_length=3)
-    studentroomno = models.CharField(max_length=3)
+    AggregatePercentage=models.FloatField(default=0)
+    studentroomno = models.CharField(max_length=20)
     def __str__(self):
         return self.studentname + " -- " + self.studentrollno + " -- " + self.studentbldgp + " -- " + self.studentroomnoprefix + " -- " + self.studentroomno
 

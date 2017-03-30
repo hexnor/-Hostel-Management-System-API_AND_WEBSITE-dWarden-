@@ -9,6 +9,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
+#from .apicustom import APIView
 from .models import Student, Hostel, State, College,Branch
 from .serializers import StudentSerializer, CollegeSerializer, StateSerializer, HostelSerializer,BranchSerializer
 import re

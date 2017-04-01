@@ -50,30 +50,26 @@
         </ul>
       </li>
 
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">API&nbsp<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-
-          <li><a href="#"><span class="glyphicon glyphicon-book"></span> &nbsp&nbspDocumentation</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-play"> Live View</span></a></li>
-        </ul>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">API&nbsp</a>
+{#        <ul class="dropdown-menu">#}
+{##}
+{#          <li><a href="#"><span class="glyphicon glyphicon-book"></span> &nbsp&nbspDocumentation</a></li>#}
+{#            <li><a href="#"><span class="glyphicon glyphicon-play"> Live View</span></a></li>#}
+{#        </ul>#}
       </li>
       <li><a href="#">About</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Admin</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Institute</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Student</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;&nbsp;Guest</a></li>
-        </ul>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login </a>
+
       </li>
     </ul>
   </div>
       </div>
 </nav>
+
 
 <div id="myCarousel" class="carousel slide " data-ride="carousel">
   <!-- Indicators -->

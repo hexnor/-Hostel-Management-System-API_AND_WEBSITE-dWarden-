@@ -2,7 +2,7 @@
 from api.config import authenticateuser
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from rest_framework import status
 from rest_framework import parsers, renderers
 from rest_framework.authtoken.models import Token
@@ -207,3 +207,20 @@ class BranchList(APIView):
 
         else:
             pass
+from django.contrib import auth
+from django import forms
+class LoginGui(forms.Form):
+    def post(self,request):
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        if(username!='admin'):
+            user=auth.authenticate(username=username,password=password)
+            if user is not None:
+                if user.is_active:
+                    auth.login(request, user)
+
+                    ...
+                    return ...
+
+            else:
+                return HttpResponseRedirect("Invalid username or password")

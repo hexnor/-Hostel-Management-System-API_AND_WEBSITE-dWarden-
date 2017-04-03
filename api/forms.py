@@ -1,6 +1,9 @@
-from django.contrib.auth.forms import UserCreationForm
-from .models import Student,College,Hostel,Branch,State
-class UserForm(UserCreationForm):
+from django.contrib.auth.models import User
+from django import forms
 
-    class Meta(UserCreationForm.Meta):
-        fields = ['username','first_name','last_name','email','password1','password2','is_staff']
+class UserForm(forms.ModelForm):
+    password=forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model=User
+        fields=['username','email','password']
+

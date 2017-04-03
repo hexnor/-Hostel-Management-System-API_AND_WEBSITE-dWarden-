@@ -22,6 +22,6 @@ urlpatterns = [
     url(r'^login.html$', auth_views.login, {'template_name': 'login.html'}, name='login'),
 url(r'^api.html$', auth_views.login, {'template_name': 'api.html'}, name='api'),
    # url(r'^logout$', apiview.auth_views.logout, {'next_page' : '/login'},name='logout'),
-    #url(r'^register$', apiview.UserFormView.as_view(),{'template_name': 'register.html'}, name='register'),
+    url(r'^register.html$', apiview.UserFormView.as_view(), name='register'),
 ]
 urlpatterns=format_suffix_patterns(urlpatterns)

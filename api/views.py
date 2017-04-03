@@ -1,8 +1,11 @@
 
 from api.config import authenticateuser
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
+from django.shortcuts import redirect,render
+from django.views.generic import View
+from .forms import UserForm
 from rest_framework import status
 from rest_framework import parsers, renderers
 from rest_framework.authtoken.models import Token
@@ -207,20 +210,26 @@ class BranchList(APIView):
 
         else:
             pass
-from django.contrib import auth
-from django import forms
-class LoginGui(forms.Form):
+
+class UserFormView(View):
+    form_class=UserForm
+    template_name='register.html'
+    print(
+        'hello'
+    )
+    def get(self,request):
+        form=self.form_class(None)
+        return render(request,self.template_name,{'form':form})
     def post(self,request):
-        username=request.POST.get('username')
-        password=request.POST.get('password')
-        if(username!='admin'):
-            user=auth.authenticate(username=username,password=password)
-            if user is not None:
-                if user.is_active:
-                    auth.login(request, user)
+        email= request.POST['username']
+        password = request.POST['password']
+        username = request.POST['email']
+        print(username+"     "+email+"    "+password)
+        try:
+            obj = User.objects.create_user(username, email, password, is_staff=True)
+        except:
+            print("key Exist")
 
-                    ...
-                    return ...
-
-            else:
-                return HttpResponseRedirect("Invalid username or password")
+        return HttpResponse('Congratulation You Are Successfully Registered'
+                            '\n'
+                            '<a href="/login.html">Click to login </a>')

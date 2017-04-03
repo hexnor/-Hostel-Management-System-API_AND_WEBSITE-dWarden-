@@ -62,4 +62,6 @@ class Student(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+from django.contrib.auth.models import User
+from django import forms
 

@@ -33,7 +33,7 @@ urlpatterns+=[
 ######################       API     PART  URLS          #################################
 
 
-
+from HmsApi import settings
 
 ######################      UI     PART  URLS          #################################
 from ui import views as uiview
@@ -45,7 +45,6 @@ url(r'^profile$', uiview.profile,name='profile'),
 url(r'^about$', uiview.about,name='about'),
 url(r'^ui/login$', uiview.LoginNow.as_view(), name='login'),
 url(r'^ui/register$', uiview.UserFormView.as_view(), name='register'),
-
 
 
 ]

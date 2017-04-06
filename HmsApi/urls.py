@@ -46,10 +46,19 @@ url(r'^about$', uiview.about,name='about'),
 url(r'^ui/login$', uiview.LoginNow.as_view(), name='login'),
 url(r'^ui/register$', uiview.UserFormView.as_view(), name='register'),
 url(r'^action/info$', uiview.UserInfo.as_view(), name='info'),
-# url(r'^action/bloodsearch$', uiview.UserBldsearch.as_view(), name='bldsearch'),
-# url(r'^action/studentsearch$', uiview.UserStusearch.as_view(), name='stusearch'),
-# url(r'^allotment/result$', uiview.HostelAllotresult.as_view(), name='allotresult'),
+url(r'^action/bloodsearch$', uiview.UserBldsearch.as_view(), name='bldsearch'),
+url(r'^action/bloodsearchresult$', uiview.UserBldsearchResult.as_view(), name='bldsearch'),
+url(r'^action/studentsearch$', uiview.UserStusearch.as_view(), name='stusearch'),
+url(r'^action/studentsearchresult$', uiview.UserStusearchResult.as_view(), name='stusearch'),
+
+
 
 ]
 
 ######################       UI     PART  URLS          #################################
+
+
+######################       HOSTEL ALLOTMENT    PART  URLS          #################################
+from hostelallocation import views as hostelallocationview
+urlpatterns+=[
+url(r'^allotment/result$', hostelallocationview.HostelAllotresult, name='allotresult'),]

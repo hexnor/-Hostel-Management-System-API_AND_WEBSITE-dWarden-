@@ -1,0 +1,29 @@
+{% extends 'ui/profile_base.html' %}
+{% block maincontent %}
+<div class="container container-fluid" style="background-color: navajowhite">
+
+  {% block content %}
+    <h1>Student info</h1>
+
+    {% if student_info %}
+    <ul>
+
+      {% for student in student_info %}
+      <li>
+          Student Name :: &nbsp &nbsp&nbsp&nbsp&nbsp{{ student.studentname }}    Student Emailid ::  &nbsp &nbsp&nbsp&nbsp&nbsp  {{ student.studentemailid }} Student Hostel ::  &nbsp &nbsp&nbsp&nbsp&nbsp  {{ student.hostelname }} Student College ::   &nbsp &nbsp&nbsp&nbsp&nbsp{{ student.studentname }}
+          <hr>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>Update Your Info From The App Or Using The Api Or Contact at yokeshrana@gmail.com</p>
+    {% endif %}
+{% endblock %}
+
+
+</div>
+{% endblock %}
+
+
+

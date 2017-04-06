@@ -3,16 +3,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from  django.contrib.auth.models import User
-from ui.models import Usernamesave
+from api.models import TempVar
 def index(request):
     return render(request,'ui/index.html')
-
-
-
-
-
-
-
 from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt ##included as without this it will not allow
 def profile(request):
@@ -43,7 +36,9 @@ def api(request):
 def about(request):
     return render(request, 'ui/about.html')
 
-from .forms import UserForm,LoginForm
+from .forms import UserForm, LoginForm, SearchBlood, SearchStudent
+
+
 class UserFormView(View):
     form_class=UserForm
     template_name = 'ui/register.html'
@@ -89,8 +84,8 @@ class LoginNow(View):
         if user is not None and user.is_active:
 
             login(request, user)
-            p = Usernamesave.objects.get(pk=1)
-            p.username=username
+            p = TempVar.objects.get(keyid=1)
+            p.value=username
             p.save()
             return HttpResponseRedirect("/profile"+"?email=\'"+username+"\'")
         else:
@@ -102,20 +97,67 @@ from django.views import generic
 class UserInfo(generic.ListView):
     model = Student
     context_object_name = 'student_info'
-    p = Usernamesave.objects.get(pk=1)
-    username=p.username
+    username=''
+    p = TempVar.objects.get(keyid="1")
+    username=p.value
     queryset = Student.objects.filter(studentemailid=username) #add [:5]  to Get 5
-    print(queryset)
     template_name = 'ui/personalinfo.html'
 
 
-class UserBldsearch(object):
-    pass
 
 
-class UserStusearch(object):
-    pass
+class UserBldsearch(View):
+    form_class = SearchBlood
+    template_name = 'ui/searchbloodgroup.html'
+
+    ##for disaplaying form
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    ##for processing form
+    def post(self, request):
+        studentbldgp = request.POST['studentbloodgp']
+        p = TempVar.objects.get(keyid=2)
+        p.value=studentbldgp
+        p.save()
+        p = TempVar.objects.get(keyid=2)
+        print(p.value)
+        return HttpResponseRedirect('bloodsearchresult')
+
+class UserBldsearchResult(generic.ListView):
+    model = Student
+    context_object_name = 'student_info'
+    # pk1 for user and pk2 for bloodgroup
+    bloodgp=''
+    bloodgp=TempVar.objects.get(keyid=2).value
+    queryset = Student.objects.filter(studentbloodgp=bloodgp)  # add [:5]  to Get 5
+    template_name = 'ui/searchbloodgroupresult.html'
+class UserStusearch(View):
+    form_class = SearchStudent
+    template_name = 'ui/searchstudent.html'
+
+    ##for disaplaying form
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form': form})
+
+    ##for processing form
+    def post(self, request):
+        student = request.POST['studentname']
+        p = TempVar.objects.get(keyid=3)
+        p.value = student
+        p.save()
+        p = TempVar.objects.get(keyid=3)
+        print(p.value)
+        return HttpResponseRedirect('studentsearchresult')
+class UserStusearchResult(generic.ListView):
+    model = Student
+    context_object_name = 'student_info'
+    # pk1 for user and pk2 for bloodgroup
+    student=''
+    student=TempVar.objects.get(keyid=3).value
+    queryset = Student.objects.filter(studentname__contains=student)  # add [:5]  to Get 5
+    template_name = 'ui/searchstudentresult.html'
 
 
-class HostelAllotresult(object):
-    pass

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import State,College,Hostel,Branch,Student
+from .models import State,College,Hostel,Branch,Student,TempVar
 ################## ####### ADMIN VIEW ####################################
 class StateAdmin(admin.ModelAdmin):
     list_display = ('statename',)
@@ -16,4 +16,5 @@ admin.site.register(Branch,BranchAdmin)
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('studentrollno','studentname','hostelname','collegename','studentemailid','studentroomno','studentyear','studentpercentage','studentbloodgp')
 admin.site.register(Student,StudentAdmin)
+# admin.site.register(TempVar)
 ################################### ADMIN VIEW ####################################

@@ -56,3 +56,6 @@ class Student(models.Model):
     studentroomno=models.CharField(max_length=5)
 
 ###################### API MODEL ################################
+class TempVar(models.Model):
+    keyid=models.CharField(max_length=2,unique=True)
+    value=models.CharField(max_length=32)

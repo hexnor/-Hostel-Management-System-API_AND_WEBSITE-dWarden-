@@ -59,54 +59,23 @@ body {
 
     <span style="font-size:30px;cursor:pointer" onclick="closeNav()">&nbsp&nbsp&nbsp&times; </span>
     <hr>
-    <a href="#">Personal Info</a><hr>
-    <a href="#">Search Blood Group</a>
+    <a href="/action/info">Personal Info</a><hr>
+    <a href="/action/bloodsearch">Search Blood Group</a>
     <hr>
-    <a href="#">Search Student </a>
+    <a href="/action/studentsearch">Search Student </a>
     <hr>
-    <a href="#">See Allotment Result</a>
+    <a href="/allotment/result">See Allotment Result</a>
     <hr>
 
 </div>
 
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&nbsp&nbsp&#9776; </span>
+
 <div id="main" >
-<div class="container container-fluid" style="background-color: navajowhite">
-
-  <h2 style="text-align: center;border:2px solid;padding: 10px">Welcome {{ user.username  }}</h2>
+{% block maincontent %}
 
 
-</div>
-    <br><br><br>
-<div class="container container-fluid" style="background-color: navajowhite">
-
-    <h1><b>Instructions</b></h1>
-    <ul style="font-size: 17px; ">
-                  <li class="glyphicon  glyphicon-hand-right">
-                   <p  style="display: inline-block"> Click on Toggle Action on The upper left corner For more Actions</p>
-                </li><br><br>
-                <li class="glyphicon  glyphicon-hand-right">
-                   <p style="display: inline-block"> You Need To be Logged in For performing Any Actions</p>
-                </li><br><br>
-                <li  class="glyphicon glyphicon-hand-right">
-                   <p  style="display: inline-block">Hostel Allocation Will Not Be Done Immediately </p>
-                </li><br><br>
-                <li class="glyphicon glyphicon-hand-right">
-                <p  style="display: inline-block"z> The Hostel Allocated Result Can Be Checked On this date --></p>
-                </li><br><br>
-
-            </ul>
-
-
-
-
-
-
-
-
-
-
-</div>
+{% endblock %}
 </div>
 <script>
 function openNav() {

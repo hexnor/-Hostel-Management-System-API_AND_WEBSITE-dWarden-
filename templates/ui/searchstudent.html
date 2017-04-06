@@ -1,125 +1,20 @@
-{% extends 'ui/base.html' %}
-{% block Login %}
-    <li><a href="#"><span class="glyphicon glyphicon-user"> </span> {{ user.username }}</a></li>
-    <li ><a href="/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+{% extends 'ui/profile_base.html' %}
+{% block maincontent %}
+    <div class="container"><div class="panel" style="background-color: navajowhite">
+<form class="form-horizontal" role="form" action='' method="post">
+                        {% csrf_token %}
+    <br>
+                        {% include 'ui/form_template.html' %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <br>
+                                <button style="display: inline-block;" type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+
+
+                    </form>
+</div></div>
+
+
 {% endblock %}
-{% block body %}
-<style>
-body {
-    font-family: "Lato", sans-serif;
-    transition: background-color .5s;
-
-}
-
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-}
-
-.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-}
-
-#main {
-    transition: margin-left .5s;
-
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
-<div id="mySidenav" class="sidenav">
-
-    <span style="font-size:30px;cursor:pointer" onclick="closeNav()">&nbsp&nbsp&nbsp&times; </span>
-    <hr>
-    <a href="#">Personal Info</a><hr>
-    <a href="#">Search Blood Group</a>
-    <hr>
-    <a href="#">Search Student </a>
-    <hr>
-    <a href="#">See Allotment Result</a>
-    <hr>
-
-</div>
-
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&nbsp&nbsp&#9776; </span>
-<div id="main" >
-<div class="container container-fluid" style="background-color: navajowhite">
-
-  <h2 style="text-align: center;border:2px solid;padding: 10px">Welcome {{ user.username  }}</h2>
-
-
-</div>
-    <br><br><br>
-<div class="container container-fluid" style="background-color: navajowhite">
-
-    <h1><b>Instructions</b></h1>
-    <ul style="font-size: 17px; ">
-                  <li class="glyphicon  glyphicon-hand-right">
-                   <p  style="display: inline-block"> Click on Toggle Action on The upper left corner For more Actions</p>
-                </li><br><br>
-                <li class="glyphicon  glyphicon-hand-right">
-                   <p style="display: inline-block"> You Need To be Logged in For performing Any Actions</p>
-                </li><br><br>
-                <li  class="glyphicon glyphicon-hand-right">
-                   <p  style="display: inline-block">Hostel Allocation Will Not Be Done Immediately </p>
-                </li><br><br>
-                <li class="glyphicon glyphicon-hand-right">
-                <p  style="display: inline-block"z> The Hostel Allocated Result Can Be Checked On this date --></p>
-                </li><br><br>
-
-            </ul>
-
-
-
-
-
-
-
-
-
-
-</div>
-</div>
-<script>
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-{#    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";#}
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
-{#    document.body.style.backgroundColor = "white";#}
-}
-</script>
-{% endblock %}
-

@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views import View
 from  django.contrib.auth.models import User
-
+from ui.models import Usernamesave
 def index(request):
     return render(request,'ui/index.html')
 
@@ -73,9 +73,11 @@ class UserFormView(View):
         return HttpResponse('Congratulation You Are Successfully Registered'
                             '\n'
                             '<a href="/ui/login">Click to login </a>')
+
 class LoginNow(View):
     form_class=LoginForm
     template_name = 'ui/login.html'
+    username=''
     def get(self,request):
         form=self.form_class(None)
         return render(request,self.template_name,{'form':form})
@@ -87,8 +89,33 @@ class LoginNow(View):
         if user is not None and user.is_active:
 
             login(request, user)
-
+            p = Usernamesave.objects.get(pk=1)
+            p.username=username
+            p.save()
             return HttpResponseRedirect("/profile"+"?email=\'"+username+"\'")
         else:
 
             return HttpResponseRedirect("/ui/login")
+from api.models import Student
+from django.views import generic
+
+class UserInfo(generic.ListView):
+    model = Student
+    context_object_name = 'student_info'
+    p = Usernamesave.objects.get(pk=1)
+    username=p.username
+    queryset = Student.objects.filter(studentemailid=username) #add [:5]  to Get 5
+    print(queryset)
+    template_name = 'ui/personalinfo.html'
+
+
+class UserBldsearch(object):
+    pass
+
+
+class UserStusearch(object):
+    pass
+
+
+class HostelAllotresult(object):
+    pass

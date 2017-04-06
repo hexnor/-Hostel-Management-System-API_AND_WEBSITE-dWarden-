@@ -59,8 +59,8 @@ body {
 
     <span style="font-size:30px;cursor:pointer" onclick="closeNav()">&nbsp&nbsp&nbsp&times; </span>
     <hr>
-    <a href="/action/info">Personal Info</a><hr>
-    <a href="/">Search Blood Group</a>
+    <a href="#">Personal Info</a><hr>
+    <a href="#">Search Blood Group</a>
     <hr>
     <a href="#">Search Student </a>
     <hr>
@@ -73,40 +73,61 @@ body {
 <div id="main" >
 <div class="container container-fluid" style="background-color: navajowhite">
 
-  <h2 style="text-align: center;border:2px solid;padding: 10px">Welcome {{ user.username  }}</h2>
+  {% block content %}
+    <h1>Student info</h1>
+
+    {% if student_info %}
+    <ul>
+
+      {% for student in student_info %}
+      <li>
+          Student Name ::   &nbsp &nbsp&nbsp&nbsp&nbsp{{ student.studentname }}
+          <hr>
+      </li>
+            <li>
+          Student Emailid ::  &nbsp &nbsp&nbsp&nbsp&nbsp  {{ student.studentemailid }}
+                <hr>
+      </li>
+            <li>
+          Student Hostel ::  &nbsp &nbsp&nbsp&nbsp&nbsp  {{ student.hostelname }}
+                <hr>
+      </li>
+        <li>
+          Student College ::   &nbsp &nbsp&nbsp&nbsp&nbsp{{ student.studentname }}
+          <hr>
+      </li>
+            <li>
+          Student State ::  &nbsp &nbsp&nbsp&nbsp&nbsp  {{ student.statename }}
+                <hr>
+      </li>
+            <li>
+          Student BloodGroup ::  &nbsp &nbsp&nbsp&nbsp&nbsp  {{ student.studentbloodgp }}
+                <hr>
+      </li>
+            <li>
+          Student Rollno ::   &nbsp &nbsp&nbsp&nbsp&nbsp{{ student.studentrollno }}
+          <hr>
+      </li>
+            <li>
+          Student RoomNo::  &nbsp &nbsp&nbsp&nbsp&nbsp  {{ student.studentroomno }}
+                <hr>
+      </li>
+            <li>
+          Student Year ::  &nbsp &nbsp&nbsp&nbsp&nbsp  {{ student.studentyear }}
+                <hr>
+      </li>
+
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>Update Your Info From The App Or Using The Api Or Contact at yokeshrana@gmail.com</p>
+    {% endif %}
+{% endblock %}
 
 
 </div>
-    <br><br><br>
-<div class="container container-fluid" style="background-color: navajowhite">
 
-    <h1><b>Instructions</b></h1>
-    <ul style="font-size: 17px; ">
-                  <li class="glyphicon  glyphicon-hand-right">
-                   <p  style="display: inline-block"> Click on Toggle Action on The upper left corner For more Actions</p>
-                </li><br><br>
-                <li class="glyphicon  glyphicon-hand-right">
-                   <p style="display: inline-block"> You Need To be Logged in For performing Any Actions</p>
-                </li><br><br>
-                <li  class="glyphicon glyphicon-hand-right">
-                   <p  style="display: inline-block">Hostel Allocation Will Not Be Done Immediately </p>
-                </li><br><br>
-                <li class="glyphicon glyphicon-hand-right">
-                <p  style="display: inline-block"z> The Hostel Allocated Result Can Be Checked On this date --></p>
-                </li><br><br>
-
-            </ul>
-
-
-
-
-
-
-
-
-
-
-</div>
 </div>
 <script>
 function openNav() {

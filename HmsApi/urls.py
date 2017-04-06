@@ -45,7 +45,10 @@ url(r'^profile$', uiview.profile,name='profile'),
 url(r'^about$', uiview.about,name='about'),
 url(r'^ui/login$', uiview.LoginNow.as_view(), name='login'),
 url(r'^ui/register$', uiview.UserFormView.as_view(), name='register'),
-
+url(r'^action/info$', uiview.UserInfo.as_view(), name='info'),
+# url(r'^action/bloodsearch$', uiview.UserBldsearch.as_view(), name='bldsearch'),
+# url(r'^action/studentsearch$', uiview.UserStusearch.as_view(), name='stusearch'),
+# url(r'^allotment/result$', uiview.HostelAllotresult.as_view(), name='allotresult'),
 
 ]
 

@@ -1,1 +1,1 @@
-web: gunicorn Hostel_Management_system.wsgi
+web: gunicorn HmsApi.wsgi

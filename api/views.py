@@ -1,22 +1,13 @@
-
 from api.config import authenticateuser
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
-from django.shortcuts import redirect,render
-from django.views.generic import View
-from .forms import UserForm
+from django.http import JsonResponse
 from rest_framework import status
-from rest_framework import parsers, renderers
 from rest_framework.authtoken.models import Token
-from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
-#from .apicustom import APIView
-from .models import Student, Hostel, State, College,Branch
+from .models import Student, Hostel, State, College, Branch
 from .serializers import StudentSerializer, CollegeSerializer, StateSerializer, HostelSerializer,BranchSerializer
-import re
-
 
 class StateList(APIView):
 
@@ -211,25 +202,4 @@ class BranchList(APIView):
         else:
             pass
 
-class UserFormView(View):
-    form_class=UserForm
-    template_name='register.html'
-    print(
-        'hello'
-    )
-    def get(self,request):
-        form=self.form_class(None)
-        return render(request,self.template_name,{'form':form})
-    def post(self,request):
-        email= request.POST['username']
-        password = request.POST['password']
-        username = request.POST['email']
-        print(username+"     "+email+"    "+password)
-        try:
-            obj = User.objects.create_user(username, email, password, is_staff=True)
-        except:
-            print("key Exist")
 
-        return HttpResponse('Congratulation You Are Successfully Registered'
-                            '\n'
-                            '<a href="/login.html">Click to login </a>')

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Student,State,College,Hostel
+from .models import Student,State,College,Hostel,Branch
 
 
 
@@ -24,6 +24,6 @@ class StudentSerializer(serializers.ModelSerializer):
         fields='__all__'
 class BranchSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Student
+        model = Branch
         fields='__all__'
 

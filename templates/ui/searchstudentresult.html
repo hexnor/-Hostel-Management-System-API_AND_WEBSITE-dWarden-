@@ -8,11 +8,21 @@
     {% if student_info %}
     <ul>
 
-      {% for student in student_info %}
-      <li>
-          Student Name :: &nbsp &nbsp&nbsp&nbsp&nbsp{{ student.studentname }}    Student Emailid ::  &nbsp &nbsp&nbsp&nbsp&nbsp  {{ student.studentemailid }} Student Hostel ::  &nbsp &nbsp&nbsp&nbsp&nbsp  {{ student.hostelname }} Student College ::   &nbsp &nbsp&nbsp&nbsp&nbsp{{ student.studentname }}
-          <hr>
+       {% for student in student_info %}
+
+      <li >
+                <span style="text-align: center">{{  forloop.counter }}</span>
+          <br> Student Name :: &nbsp &nbsp&nbsp&nbsp&nbsp{{ student.studentname }}
+
+          <br>Student Emailid ::   {{ student.studentemailid }}
+          <br>Student Hostel ::   {{ student.hostelname }}
+          <br>Student College ::   {{ student.studentname }}
+          <br>Student Year ::   {{ student.studentyear }}
+          <br>Student Branch ::   {{ student.branchname }}
+        <br>Student RoomNo ::   {{ student.studentroomno }}
+
       </li>
+           <hr>
       {% endfor %}
 
     </ul>

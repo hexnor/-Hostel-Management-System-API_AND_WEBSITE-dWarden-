@@ -17,6 +17,19 @@ class SearchBlood(forms.ModelForm):
         model=Student
         fields = ['studentbloodgp']
 class SearchStudent(forms.ModelForm):
+    choices = ((1, ("Search By Student Name")),
+               (2, ("Search By Student Roll no")),
+               (3, ("Search By Student Roll no And Year")),
+               (4, ("Search by all the three filters")),
+               )
+    SearchType= forms.ChoiceField(choices=choices)
+
+    def __init__(self, *args, **kwargs):
+        super(SearchStudent, self).__init__(*args, **kwargs)
+        self.fields['studentname'].label = "Enter Student Name"
+        self.fields['studentyear'].label = "Enter Student Year"
+        self.fields['studentrollno'].label = "Enter Student RollNo"
+        self.fields['studentname'].help_text = "We want to be sure!"
     class Meta:
         model=Student
-        fields = ['studentname']
+        fields = ['studentname','studentyear','studentrollno','SearchType']

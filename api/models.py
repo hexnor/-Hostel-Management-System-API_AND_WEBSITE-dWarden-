@@ -47,12 +47,12 @@ class Student(models.Model):
     collegename= models.ForeignKey(College, db_column='college',on_delete=models.CASCADE,to_field='collegename')
     hostelname = models.ForeignKey(Hostel, db_column='hostel', on_delete=models.CASCADE, to_field='hostelname')
     branchname = models.ForeignKey(Branch, db_column='branch', on_delete=models.CASCADE, to_field='branchname')
-    studentname=models.CharField(max_length=30)
-    studentrollno=models.CharField(max_length=30, unique=True)
+    studentname=models.CharField(max_length=30,blank=True)
+    studentrollno=models.CharField(max_length=30, unique=True,blank=True)
     studentemailid=models.CharField(max_length=30,unique=True)
     studentpercentage=models.FloatField(max_length=30)
     studentbloodgp=models.CharField(max_length=5)
-    studentyear=models.CharField(max_length=4)
+    studentyear=models.CharField(max_length=4,blank=True)
     studentroomno=models.CharField(max_length=5)
 
 ###################### API MODEL ################################

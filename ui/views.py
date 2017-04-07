@@ -118,21 +118,25 @@ class UserBldsearch(View):
     ##for processing form
     def post(self, request):
         studentbldgp = request.POST['studentbloodgp']
-        p = TempVar.objects.get(keyid=2)
-        p.value=studentbldgp
-        p.save()
-        p = TempVar.objects.get(keyid=2)
-        print(p.value)
-        return HttpResponseRedirect('bloodsearchresult')
+        # html=""
+        # p = TempVar.objects.get(keyid=2)
+        # p.value=studentbldgp
+        # p.save()
+        # p = TempVar.objects.get(keyid=2)
+        # print(p.value)
+        student_info=Student.objects.filter(studentbloodgp=studentbldgp)
+        return render(request, 'ui/searchbloodgroupresult.html', {
+            'student_info': student_info,
+        })
 
-class UserBldsearchResult(generic.ListView):
-    model = Student
-    context_object_name = 'student_info'
-    # pk1 for user and pk2 for bloodgroup
-    bloodgp=''
-    bloodgp=TempVar.objects.get(keyid=2).value
-    queryset = Student.objects.filter(studentbloodgp=bloodgp)  # add [:5]  to Get 5
-    template_name = 'ui/searchbloodgroupresult.html'
+# class UserBldsearchResult(generic.ListView):
+#     model = Student
+#     context_object_name = 'student_info'
+#     # pk1 for user and pk2 for bloodgroup
+#     bloodgp=''
+#     bloodgp=TempVar.objects.get(keyid=2).value
+#     queryset = Student.objects.filter(studentbloodgp=bloodgp)  # add [:5]  to Get 5
+#     template_name = 'ui/searchbloodgroupresult.html'
 class UserStusearch(View):
     form_class = SearchStudent
     template_name = 'ui/searchstudent.html'
@@ -145,19 +149,42 @@ class UserStusearch(View):
     ##for processing form
     def post(self, request):
         student = request.POST['studentname']
-        p = TempVar.objects.get(keyid=3)
-        p.value = student
-        p.save()
-        p = TempVar.objects.get(keyid=3)
-        print(p.value)
-        return HttpResponseRedirect('studentsearchresult')
-class UserStusearchResult(generic.ListView):
-    model = Student
-    context_object_name = 'student_info'
-    # pk1 for user and pk2 for bloodgroup
-    student=''
-    student=TempVar.objects.get(keyid=3).value
-    queryset = Student.objects.filter(studentname__contains=student)  # add [:5]  to Get 5
-    template_name = 'ui/searchstudentresult.html'
+        studentyearfetch = request.POST['studentyear']
+        studentrollnofetch = request.POST['studentrollno']
+        search=request.POST['SearchType']
+        # html=""
+        # p = TempVar.objects.get(keyid=2)
+        # p.value=studentbldgp
+        # p.save()
+        # p = TempVar.objects.get(keyid=2)
+        # print(p.value)
+        #redering the post variablein view directly
+        from django.db.models import Q
+        if search==1:
+            student_info = Student.objects.filter(Q(studentname__contains=student))
+        elif search==2:
+            student_info = Student.objects.filter(
+               Q(
+                    studentrollno=studentrollnofetch))
+        elif search == 3:
+            student_info = Student.objects.filter(
+                Q(studentyear=studentyearfetch) & Q(
+                    studentrollno=studentrollnofetch))
+        else :
+            student_info = Student.objects.filter(
+                Q(studentname__contains=student) & Q(studentyear=studentyearfetch) & Q(
+                    studentrollno=studentrollnofetch))
+
+        return render(request, 'ui/searchstudentresult.html', {
+            'student_info': student_info,
+        })
+# class UserStusearchResult(generic.ListView):
+#     model = Student
+#     context_object_name = 'student_info'
+#     # pk1 for user and pk2 for bloodgroup
+#     student=''
+#     student=TempVar.objects.get(keyid=3).value
+#     queryset = Student.objects.filter(studentname__contains=student)  # add [:5]  to Get 5
+#     template_name = 'ui/searchstudentresult.html'
 
 

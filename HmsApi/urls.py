@@ -35,7 +35,7 @@ urlpatterns+=[
 
 from HmsApi import settings
 
-######################      UI     PART  URLS          #################################
+######################      UI     PART  URLS    STARTS      #################################
 from ui import views as uiview
 urlpatterns+=[
 url(r'^$', uiview.index,name='home'),
@@ -55,10 +55,14 @@ url(r'^action/studentsearch$', uiview.UserStusearch.as_view(), name='stusearch')
 
 ]
 
-######################       UI     PART  URLS          #################################
+######################       UI     PART  URLS  ENDS         #################################
 
 
-######################       HOSTEL ALLOTMENT    PART  URLS          #################################
+######################       HOSTEL ALLOTMENT    PART  URLS   STARTS       #################################
 from hostelallocation import views as hostelallocationview
 urlpatterns+=[
 url(r'^allotment/result$', hostelallocationview.HostelAllotresult, name='allotresult'),]
+
+######################       HOSTEL ALLOTMENT  API  PART  URLS ENDS         #################################
+urlpatterns+=[
+url(r'^api/hostelallot$', hostelallocationview.Allot.as_view(), name='allotapi'),]

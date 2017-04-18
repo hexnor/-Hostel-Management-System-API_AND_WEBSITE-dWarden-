@@ -54,6 +54,7 @@ class Student(models.Model):
     studentbloodgp=models.CharField(max_length=5)
     studentyear=models.CharField(max_length=4,blank=True)
     studentroomno=models.CharField(max_length=5)
+    candonateblood=models.CharField(max_length=20,default="no")
     def __str__(self):
         return self.studentrollno
 

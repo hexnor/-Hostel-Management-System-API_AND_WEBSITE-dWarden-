@@ -30,12 +30,12 @@ def allocate(choices, roll):
     obj = FinalAllocatedList.objects.all()
     #checking for roll no and returning flase if found in hostelallocationlist
     if obj.filter(studentrollno=roll).count()==1:
-        return False
+        return "null"
     else:
         for i in choices:
             var=obj.filter(roomallocated=i)
             if var.count()==0:
-                status=True
+                status=i
                 FinalAllocatedList(roomallocated=i,studentrollno=roll).save()
                 break
     return status
@@ -76,7 +76,7 @@ class Allot(APIView):
 
             choices=[request.POST['choice1'],request.POST['choice2'],request.POST['choice3'],request.POST['choice4'],request.POST['choice5'],request.POST['choice6'],request.POST['choice7'],request.POST['choice8'],request.POST['choice9'],request.POST['choice10']]
             status=allocate(choices,roll)
-            if status==True:
-                return JsonResponse({"status":"Updated"})
+            if status!="null":
+                return JsonResponse({"status":status})
             else:
-                return JsonResponse({"status":"Notupdated"})
+                return JsonResponse({"status":status})

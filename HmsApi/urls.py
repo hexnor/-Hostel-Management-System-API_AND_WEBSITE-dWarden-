@@ -16,6 +16,7 @@ from rest_framework.authtoken import views as tokenview
 
 urlpatterns+=[
 
+    url(r'^meta$', apiview.display_meta, name='meta'),
     url(r'^api/student$', apiview.StudentList.as_view(),name='apistudent'),
     url(r'^api/state$', apiview.StateList.as_view(),name='apistate'),
     url(r'^api/college$', apiview.CollegeList.as_view(),name='apicollege'),

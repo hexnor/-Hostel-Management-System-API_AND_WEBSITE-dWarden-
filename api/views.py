@@ -1,7 +1,7 @@
 from api.config import authenticateuser
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
@@ -9,6 +9,12 @@ from rest_framework.views import APIView
 from .models import Student, Hostel, State, College, Branch
 from .serializers import StudentSerializer, CollegeSerializer, StateSerializer, HostelSerializer,BranchSerializer
 
+def display_meta(request):
+    values = request.META.items()
+    html = []
+    for k, v in values:
+        html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v))
+    return HttpResponse('<table>%s</table>' % '\n'.join(html))
 class StateList(APIView):
 
     def get(self, request):

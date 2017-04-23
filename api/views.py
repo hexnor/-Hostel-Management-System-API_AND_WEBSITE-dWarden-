@@ -165,7 +165,7 @@ class StudentList(APIView):
 
     def get(self, request):
         if authenticateuser.checkauth(request.META['HTTP_AUTHORIZATION'].__str__(),authenticateuser.defaulttoken)==1:
-            student = Student.objects.filter(studentrollno=request.GET['studentrollno'])
+            student = Student.objects.filter(studentemailid=request.GET['email'])
             serializer = StudentSerializer(student, many=True)
             return Response(serializer.data)
         else:

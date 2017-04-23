@@ -48,7 +48,7 @@ url(r'^ui/login$', uiview.LoginNow.as_view(), name='login'),
 url(r'^ui/register$', uiview.UserFormView.as_view(), name='register'),
 url(r'^action/info$', uiview.UserInfo.as_view(), name='info'),
 url(r'^action/bloodsearch$', uiview.UserBldsearch.as_view(), name='bldsearch'),
-# url(r'^action/bloodsearchresult$', uiview.UserBldsearchResult.as_view(), name='bldsearch'),
+url(r'^profile/update$', uiview.ProfileUpdate.as_view(), name='profileupdate'),
 url(r'^action/studentsearch$', uiview.UserStusearch.as_view(), name='stusearch'),
 # url(r'^action/studentsearchresult$', uiview.UserStusearchResult.as_view(), name='stusearch'),
 

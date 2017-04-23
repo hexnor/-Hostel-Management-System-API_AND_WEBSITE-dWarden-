@@ -165,7 +165,7 @@ class StudentList(APIView):
 
     def get(self, request):
         if authenticateuser.checkauth(request.META['HTTP_AUTHORIZATION'].__str__(),authenticateuser.defaulttoken)==1:
-            student = Student.objects.all()
+            student = Student.objects.filter(studentrollno=request.GET['studentrollno'])
             serializer = StudentSerializer(student, many=True)
             return Response(serializer.data)
         else:
@@ -207,5 +207,4 @@ class BranchList(APIView):
 
         else:
             pass
-
 

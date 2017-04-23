@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, request
 from django.shortcuts import render
 from django.views import View
 from  django.contrib.auth.models import User
-from api.models import TempVar
+from api.models import TempVar, Student, State, College, Hostel, Branch
+from ui.models import Postlogin
 def index(request):
     return render(request,'ui/index.html')
 from django.views.decorators.csrf import csrf_exempt
@@ -64,7 +65,6 @@ class UserFormView(View):
             obj = User.objects.create_user(username, email, password, is_staff=True)
         except:
             print("key Exist")
-
         return HttpResponse('Congratulation You Are Successfully Registered'
                             '\n'
                             '<a href="/ui/login">Click to login </a>')
@@ -87,6 +87,16 @@ class LoginNow(View):
             p = TempVar.objects.get(keyid=1)
             p.value=username
             p.save()
+            x=Postlogin.objects.all()
+            try:
+                x=Postlogin.objects.get(username=request.user.username)
+            except:
+                x=None
+            if x is not None:
+                pass
+            else:
+                return HttpResponseRedirect("/profile/update")
+
             return HttpResponseRedirect("/profile"+"?email=\'"+username+"\'")
         else:
 
@@ -187,4 +197,49 @@ class UserStusearch(View):
 #     queryset = Student.objects.filter(studentname__contains=student)  # add [:5]  to Get 5
 #     template_name = 'ui/searchstudentresult.html'
 
+
+class ProfileUpdate(View):
+    def get(self,request):
+        return render(request, "ui/profileupdate.html")
+    def post(self,request):
+            statename=request.POST['statename']
+            collegename = request.POST['collegename']
+            hostelname =request.POST['hostelname']
+            branchname = request.POST['branchname']
+            studentname = request.POST['studentname']
+            studentrollno = request.POST['studentrollno']
+            studentemailid =request.POST['studentemailid']
+            studentpercentage = request.POST['studentpercentage']
+            studentbloodgp = request.POST['studentbloodgp']
+            studentyear = request.POST['studentyear']
+            studentroomno = request.POST['studentroomno']
+            candonateblood = request.POST['candonateblood']
+            print( statename +" \n"+ collegename+" \n"+  hostelname +" \n"+ branchname +" \n"+
+                   studentname +" \n"+ studentrollno +" \n"+ studentemailid
+                   + " \n" +studentpercentage+" \n"+ studentbloodgp+" \n"+ studentyear
+                   + " \n" +studentroomno+" \n"+ candonateblood)
+
+
+
+            p = Student(statename=State.objects.get(statename=statename),
+                            collegename=College.objects.get(collegename=collegename),
+                            hostelname=Hostel.objects.get(hostelname=hostelname),
+                            branchname=Branch.objects.get(branchname=branchname),
+                            studentrollno=studentrollno,
+                            studentemailid=studentemailid,
+                            studentpercentage=studentpercentage,
+                            studentbloodgp=studentbloodgp,
+                            studentyear=studentyear,
+                            studentroomno=studentroomno,
+                            candonateblood=candonateblood)
+
+            p.save()
+
+            print(request.user.username)
+            try:
+                Postlogin.objects.get(username=request.user.username)
+            except:
+                Postlogin.objects.create(username=request.user.username)
+
+            return render(request,"ui/profile.html")
 

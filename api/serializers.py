@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
+
 from .models import Student,State,College,Hostel,Branch
 
 
@@ -20,7 +22,8 @@ class HostelSerializer(serializers.ModelSerializer):
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Student
+        model=Student
+        queryset=Student
         fields='__all__'
 class BranchSerializer(serializers.ModelSerializer):
     class Meta:

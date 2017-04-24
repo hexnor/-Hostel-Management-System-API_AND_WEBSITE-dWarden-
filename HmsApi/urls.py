@@ -25,6 +25,7 @@ urlpatterns+=[
     url(r'^api/token$', tokenview.obtain_auth_token,name='apitoken'),
     url(r'^api/login$', apiview.Login.as_view(),name='apilogin'),
     url(r'^api/register$', apiview.Register.as_view(),name='apiregister'),
+    url(r'^api/bloodsearch$', apiview.BloodSearch, name='bloodsearch'),
     #url(r'^api/live$', apiview.Live.as_view(),name='apiregister')
 
 

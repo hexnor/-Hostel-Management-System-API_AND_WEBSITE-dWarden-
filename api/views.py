@@ -164,6 +164,7 @@ class HostelList(APIView):
 class StudentList(APIView):
 
     def get(self, request):
+        print(request.GET)
         if authenticateuser.checkauth(request.META['HTTP_AUTHORIZATION'].__str__(),authenticateuser.defaulttoken)==1:
             student = Student.objects.filter(studentemailid=request.GET['email'])
             serializer = StudentSerializer(student, many=True)
@@ -173,9 +174,12 @@ class StudentList(APIView):
 
 
     def post(self, request, format=None):
+        print(request.POST)
         if authenticateuser.checkauth(request.META['HTTP_AUTHORIZATION'].__str__(),authenticateuser.defaulttoken)==1:
             serializer = StudentSerializer(data=request.data)
+            print(serializer)
             if serializer.is_valid():
+                print(serializer)
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             else:
@@ -208,3 +212,6 @@ class BranchList(APIView):
         else:
             pass
 
+
+def BloodSearch(request):
+    pass

@@ -178,14 +178,19 @@ class StudentList(APIView):
         if authenticateuser.checkauth(request.META['HTTP_AUTHORIZATION'].__str__(),authenticateuser.defaulttoken)==1:
             serializer = StudentSerializer(data=request.data)
             print(serializer)
+            status="fail" ## response for student add
             if serializer.is_valid():
                 print(serializer)
                 serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                p={
+                    "status":"pass"
+                }
+                return JsonResponse(p)
             else:
-                return Response(
-                    serializer.errors, status=status.HTTP_400_BAD_REQUEST
-                )
+                p = {
+                    "status": "fail"
+                }
+                return JsonResponse(p)
         else:
             pass
 

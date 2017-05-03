@@ -2,7 +2,7 @@
 ####
 
 
-Link: http://yokeshrana.herokuapp.com/ 
+Link: http://hmsonline.herokuapp.com/ 
 
 **Technologies**: django, python, html, css,bootstrap 
 
@@ -29,4 +29,4 @@ Link: http://yokeshrana.herokuapp.com/
 
 
 ##DEPLOYED HEROKU URL###
-visit website: http://yokeshrana.herokuapp.com/**
+visit website: http://hmsonline.herokuapp.com/**

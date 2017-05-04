@@ -1,0 +1,79 @@
+{% extends 'ui/profile_base.html' %}
+{% block maincontent %}
+<div class="container container-fluid" style="background-color: navajowhite">
+  {% block content %}
+    <h1>Update Your Info :: </h1>
+      <form class="form form-group " action="" method="post" >
+     {% csrf_token %}
+         SELECT YOUR STATE :: <select  class="btn "name="statename" required=required>
+  <option value="Uttar Pradesh">Uttar Pradesh</option>
+  <option value="Kerala">Kerala</option>
+
+
+          </select></br><br>
+SELECT YOUR COLLEGE :: <select  class="btn " name="collegename" required=required>
+  <option value="BIET JHANSI">BIET JHANSI</option>
+  <option value="HBTI">HBTI</option>
+
+
+          </select><br><br>
+      SELECT YOUR HOSTEL ::  <select  class="btn " name="hostelname" required=required>
+  <option value="VRINDAVAN">VRINDAVAN</option>
+  <option value="SAKET">SAKET</option>
+  <option value="PANCHWATI">PANCHWATI</option>
+  <option value="KALPANA">KALPANA</option>
+  <option value="JAIBHARAT">JAIBHARAT</option>
+
+          </select><br>
+          <br>
+      SELECT YOUR BRANCH ::  <select class="btn " name="branchname" required=required>
+    <option  value="COMPUTER SCIENCE">COMPUTER SCIENCE AND ENGINEERING</option>
+    <option value="ELECTRONICS AND COMMUNICATION">ELECTRONICS AND COMMUNICATION ENGINEERING</option>
+    <option value="CIVIL ENGINEERING">CIVIL ENGINEERING</option>
+    <option value="CHEMICAL ENGINEERING">CHEMICAL ENGINEERING</option>
+    <option value="INFORMATION TECHNOLOGY">INFORMATION TECHNOLOGY</option>
+    <option value="MECHANICAL ENGINEERING">MECHANICAL ENGINEERING</option>
+
+          </select>
+         <br> <br>NAME :: <input type="text" name="studentname" placeholder="Enter Your  Name" required=required>
+          <br><br>ROLL NO ::<input type="text" name="studentrollno" placeholder="Enter Your Rollno" required=required>
+         <br> <br>EMAIL ID :: <input type="text" name="studentemailid" placeholder="Enter Your Email id" required=required>
+         <br> <br>YOUR PERCENTAGE ::<input type="text" name="studentpercentage" placeholder="Enter Your Percentage" required=required>
+        <br>  <br>SELECT BLOOD GROUP :: <select  class="btn " name="studentbloodgp" required=required>
+    <option value="O+ve">O+ve</option>
+    <option value="O-ve">O-ve</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+    <option value="A">A</option>
+    <option value="B">B</option>
+
+          </select><br><br>
+          SELECT YEAR ::
+<select  class="btn "name="studentyear"required=required>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+
+
+          </select><br><br>
+          ENTER YOUR ROOM NO ::
+          <br><br><input type="text" name="studentroomno" placeholder="Enter Your Room No" required=required>
+        <br>  <br> CAN YOU DONATE BLOOD :: <select  class="btn "name="candonateblood" required=required>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+
+
+
+
+          </select> <br><br><input class=" btn btn-success" type="submit" value="UPDATE DETAILS">
+          <br><br>
+      </form>
+
+{% endblock %}
+
+
+</div>
+
+{% endblock %}
+

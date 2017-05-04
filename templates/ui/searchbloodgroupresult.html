@@ -1,0 +1,40 @@
+{% extends 'ui/profile_base.html' %}
+{% block maincontent %}
+<div class="container container-fluid" style="background-color: navajowhite">
+
+  {% block content %}
+      {{ bloodgp }}
+    <h1 style="text-align: center">BLOOD SEARCH RESULT </h1>
+
+    {% if student_info %}
+    <ul>
+
+      {% for student in student_info %}
+
+      <li >
+                <span style="text-align: center">{{  forloop.counter }}</span>
+          <br> Student Name :: &nbsp &nbsp&nbsp&nbsp&nbsp{{ student.studentname }}
+
+          <br>Student Emailid ::   {{ student.studentemailid }}
+          <br>Student Hostel ::   {{ student.hostelname }}
+          <br>Student College ::   {{ student.studentname }}
+          <br>Student Year ::   {{ student.studentyear }}
+          <br>Student Branch ::   {{ student.branchname }}
+       <br>Student RoomNo ::   {{ student.studentroomno }}
+
+      </li>
+           <hr>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>Update Your Info From The App Or Using The Api Or Contact at yokeshrana@gmail.com</p>
+    {% endif %}
+{% endblock %}
+
+
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,26 @@
+{#<h1>Hello</h1>#}
+{#<ul>#}
+{#{% for choice in content.items %}#}
+{#  <li>{{choice.0}} - {{choice.1}}</li>#}
+{#{% endfor %}#}
+{#</ul>#}
+{% extends 'ui/base.html' %}
+{% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
+    {% load static %}
+
+{% block Login %}
+    <li><a href="/ui/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+    <li><a href="/ui/login"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
+{% endblock %}
+{% block body %}
+    <div class="container">
+    <div class="panel" style="background-color: #FFFFCC">
+        <div class="panel-heading " style="text-align: center;font-size: large;color: darkslategray" > <b >{{ content.title }}</b></div>
+        <div class="panel-body"> {{ content.text }}</div>
+        <div class="panel-footer pull-right"> <a class="btn btn-xs btn-danger" href="{{ content.url }}">Download Pdf </a></div>
+    </div
+    ></div>
+{% endblock %}
